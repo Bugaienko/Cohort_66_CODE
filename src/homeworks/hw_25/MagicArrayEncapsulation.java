@@ -1,22 +1,22 @@
-package homeworks.hw_24;
+package homeworks.hw_25;
 
 /**
  * @author Sergey Bugaenko
  * {@code @date} 19.05.2025
  */
 
-public class MagicArrayHW24 {
+public class MagicArrayEncapsulation {
 
     int[] array;
     int cursor; // по умолчанию = 0
 
     // Методы, расширяющие функционал массива
 
-    public MagicArrayHW24() {
+    public MagicArrayEncapsulation() {
         this.array = new int[10]; // [0, 0, 0...0]
     }
 
-    public MagicArrayHW24(int[] numbers) {
+    public MagicArrayEncapsulation(int[] numbers) {
 
         if (numbers == null || numbers.length == 0) {
             this.array = new int[10];
