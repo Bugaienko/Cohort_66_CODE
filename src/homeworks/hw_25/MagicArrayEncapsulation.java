@@ -7,8 +7,8 @@ package homeworks.hw_25;
 
 public class MagicArrayEncapsulation {
 
-    int[] array;
-    int cursor; // по умолчанию = 0
+    private int[] array;
+    private int cursor; // по умолчанию = 0
 
     // Методы, расширяющие функционал массива
 
@@ -30,7 +30,7 @@ public class MagicArrayEncapsulation {
     }
 
     // Добавление в массив одного элемента
-    void add(int value) {
+    public void add(int value) {
 
         // Проверка!
         // Есть ли свободное место во внутреннем массиве
@@ -46,7 +46,7 @@ public class MagicArrayEncapsulation {
     }
 
     // Динамическое расширение массива
-    void expandArray() {
+    private void expandArray() {
         System.out.println("Расширяем внутренний массив! Курсор = " + cursor);
         /*
         1. Создать новый массив бОльшего размера (в 2 раза больше)
@@ -68,7 +68,7 @@ public class MagicArrayEncapsulation {
 
 
     // Добавление в массив сразу нескольких значений
-    void add(int... numbers) {
+    public void add(int... numbers) {
         // с numbers можно обращаться точно также, как со ссылкой на массив
 //        System.out.println("Принял несколько int: " + numbers.length);
 //        System.out.println("значения: " + Arrays.toString(numbers));
@@ -98,12 +98,12 @@ public class MagicArrayEncapsulation {
     }
 
     // Текущее кол-во элементов в массиве
-    int size() {
+    public int size() {
         return cursor;
     }
 
     // Возвращает значение по индексу
-    int get(int index) {
+    public int get(int index) {
         // Проверить входящий индекс
 
         if (index >= 0 && index < cursor) {
@@ -119,7 +119,7 @@ public class MagicArrayEncapsulation {
     }
 
     // Удалить элемент по индексу. Возвращает старое значение.
-    int remove(int index) {
+    public int remove(int index) {
         /*
         1. Проверка индекса на валидность
             1.1. Запомнить старое значение
@@ -153,7 +153,7 @@ public class MagicArrayEncapsulation {
 
     // Поиск по значению. Первое вхождение
     // {1, 100, 5, 24, 0, 5} -> indexOf(5) ? индекс значения : отрицательно значение => 2
-    int indexOf(int value) {
+   public int indexOf(int value) {
         /*
         Перебираю все значимые элементы
         Если элемент равен искомому - вернуть индекс такого элемента
@@ -181,7 +181,7 @@ public class MagicArrayEncapsulation {
     }
 
     // Удаление элемента по значению
-    boolean removeByValue(int value) {
+    public boolean removeByValue(int value) {
         // ПЕРЕИСПОЛЬЗУЙТЕ уже написанные методы
         /*
         1. Есть ли в массиве такой элемент
@@ -198,7 +198,7 @@ public class MagicArrayEncapsulation {
     }
 
     //  массив, состоящий из элементов магического массива
-    int[] toArray() {
+    public int[] toArray() {
         int[] result = new int[cursor];
 
         for (int i = 0; i < cursor; i++) {
@@ -225,6 +225,6 @@ public class MagicArrayEncapsulation {
 9. Поиск по значению. Последнее вхождение ++
 
 10. Конструктор, принимающий обычный массив. Создать магический массив с элементами этого массива ++
-12. Написать метод, который вернет массив, состоящий из элементов магического массива
+12. Написать метод, который вернет массив, состоящий из элементов магического массива ++
 
  */
