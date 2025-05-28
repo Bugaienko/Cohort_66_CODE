@@ -18,4 +18,10 @@ public class Dog extends Animal {
         // Я могу использовать реализацию родительского класса, если мне это нужно
         return super.toString() + " | Dog. Дополнение реализации родительского метода";
     }
+
+    // Уникальный метод для класса Dog
+    public void  bark() {
+        System.out.println("Dog bark");
+    }
+
 }
