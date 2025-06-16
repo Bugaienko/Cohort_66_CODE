@@ -12,6 +12,7 @@ public class RectangleUtils {
 
     public static void main(String[] args) {
         MyList<Rectangle> rectangles = new MyArrayList<>();
+
         rectangles.add(new Rectangle(5.0, 3.0));
         rectangles.add(new Rectangle(4.0, 2.0));
         rectangles.add(new Rectangle(5.0, 3.0)); // Дубликат
@@ -25,8 +26,8 @@ public class RectangleUtils {
         }
 
         Rectangle rectangleToRemove = new Rectangle(5.0, 3.0);
-        RectangleUtils.removeDuplicates(rectangles, rectangleToRemove);
-//        RectangleUtils.removeDuplicates2(rectangles, rectangleToRemove);
+//        RectangleUtils.removeDuplicates(rectangles, rectangleToRemove);
+        RectangleUtils.removeDuplicates2(rectangles, rectangleToRemove);
 
         System.out.println("\nСписок после удаления дубликатов:");
         for (Rectangle rect : rectangles) {
