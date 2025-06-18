@@ -1,6 +1,7 @@
-package lesson_43;
+package lesson_43.list;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,8 +49,44 @@ public class ListExample {
         System.out.println("list.remove(0): " + list.remove(Integer.valueOf(0)));
         System.out.println("list: " + list);
 
-        // TODO indexOf, lastIndexOf, sort, subList
+        // Поиск элемента по значению - как результат возвращает индекс
+        // int indexOf(Object obj) - первое вхождения
+        // int lastIndexOf(Object obj) - последнее вхождение
+
+        System.out.println("list.indexOf(4000): " + list.indexOf(4000)); // -1 - значение не найдено
+        System.out.println("list.indexOf(-100): " + list.indexOf(-100));
+        System.out.println("list.lastIndexOf(-100): " + list.lastIndexOf(-100));
+
+        System.out.println("===================== sort ==================");
+        // void sort(Comparator<? super E> comparator) - сортирует список с использованием указанного компаратора
+
+        list.sort((i1, i2) -> Integer.compare(i2, i1));
+        list.sort(Comparator.reverseOrder());
+
+        System.out.println("list: " + list);
+
+        list.sort((i1, i2) -> Integer.compare(i1, i2));
+        list.sort((i1, i2) -> i1.compareTo(i2));
+        list.sort(Integer::compareTo);
+        list.sort(Comparator.naturalOrder());
+
+        System.out.println("list: " + list);
+
+        List<Integer> sorted = sortByComparator(list, Comparator.naturalOrder());
+        System.out.println("sorted: " + sorted);
+
+        // List<E> subList(int idxFrom, int idxTo) - возвращает список из элементов,
+        // между этими индексами. From - включительно, To - не включительно
+
+        List<Integer> subList = list.subList(1, 5);
+        System.out.println("subList(1, 5): " + subList);
 
 
+    }
+
+    public static List<Integer> sortByComparator(List<Integer> list, Comparator<Integer> comparator) {
+        List<Integer> result = new ArrayList<>(list);
+        result.sort(comparator);
+        return result;
     }
 }
