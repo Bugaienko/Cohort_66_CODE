@@ -1,5 +1,7 @@
 package lesson_46;
 
+import java.util.Objects;
+
 /**
  * @author Sergey Bugaenko
  * {@code @date} 23.06.2025
@@ -26,8 +28,24 @@ public class Cat {
                 '}';
     }
 
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Cat)) return false;
+
+        Cat cat = (Cat) o;
+        return weight == cat.weight && Objects.equals(name, cat.name) && Objects.equals(color, cat.color);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(name);
+        result = 31 * result + weight;
+        result = 31 * result + Objects.hashCode(color);
+        return result;
+    }
+
     public String getName() {
-        System.out.println("call getName: " + this.name);
+//        System.out.println("call getName: " + this.name);
         return name;
     }
 
