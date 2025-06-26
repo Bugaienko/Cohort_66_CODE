@@ -1,0 +1,118 @@
+package homeworks.hw_48.persons;
+
+/**
+ * @author Sergey Bugaenko
+ * {@code @date} 06.06.2025
+ */
+
+public class Person {
+
+    private String email;
+    private String password;
+
+    public Person(String email, String password) {
+        setEmail(email);
+        setPassword(password);
+    }
+
+    public void setEmail(String email) {
+        try {
+            PersonValidator.validateEmail(email);
+//            System.out.println("Email прошел проверку");
+            this.email = email;
+        } catch (EmailValidateException ex) {
+            System.out.println("Вы ввели некорректный email: " + ex.getMessage());
+//            System.out.println(ex);
+        }
+    }
+
+    /*
+    test@email.com.n.et
+    1. Должна присутствовать @ и только одна
+    2. Точка после собаки
+    3. После последней точки есть 2 или более символов
+    4. Алфавит, цифры, '-', '_', '@', '.'
+    5. До собаки должен быть хотя бы один символ
+    6. Первый символ - должна быть буква
+     */
+
+
+
+    public void setPassword(String password) {
+
+        try {
+            PersonValidator.validatePassword(password);
+            System.out.println("Password is valid");
+            this.password = password;
+        } catch (PasswordValidateException ex) {
+            System.out.println("Вы ввели некорректный password: " + ex.getMessage());
+        }
+
+    }
+
+    private boolean isPasswordValid(String password) {
+        if (password == null || password.length() < 8) return false;
+
+        boolean isDigit = false;
+        boolean isUppercase = false;
+        boolean isLowercase = false;
+        boolean isSpecialSymbol = false;
+
+        // альтернативный способ объявления переменных
+        boolean[] result = new boolean[4]; // false, false, false, false
+
+        String symbols = "#@$!%&*()[],.-";
+
+        // Перебирать символы
+        for (char ch : password.toCharArray()) {
+            if (Character.isDigit(ch)) isDigit = true;
+//            if (Character.isDigit(ch)) result[0] = true;
+            if (Character.isUpperCase(ch)) isUppercase = true;
+            if (Character.isLowerCase(ch)) isLowercase = true;
+            if (symbols.indexOf(ch) >= 0 ) isSpecialSymbol = true;
+//            if (symbols.contains(String.valueOf(ch))) isSpecialSymbol = true;
+        }
+
+        System.out.printf("%s -> d:%s | u:%s | l:%s | s:%s\n",password, isDigit, isUppercase, isLowercase, isSpecialSymbol);
+
+        // Если хотя бы одна из переменных останется в значении false, то весь пароль НЕ будет признать валидным (надо вернуть false)
+        return  isDigit && isUppercase && isLowercase && isSpecialSymbol;
+    }
+
+    /*
+    Требования к паролю:
+    1. Длина пароля >= 8
+    2. Должна быть мин 1 большая буква
+    3. Должна быть мин 1 маленькая буква
+    4. Должна быть мин 1 цифра
+    5. Должна быть мин 1 специальный символ: "#@$!%&*()[],.-"
+
+    Пароль должен удовлетворять ВСЕМ требованиям сразу.
+    Для каждого пункта завести булевую переменную (isUpperCase, isDigit и т.д)
+    Пароль подходит только если ВСЕ четыре имеют значение true.
+
+     Character.isUpperCase(ch);
+     Character.isLowerCase(ch);
+     Character.isDigit(ch);
+     */
+
+    public String getEmail() {
+        return email;
+    }
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+}
