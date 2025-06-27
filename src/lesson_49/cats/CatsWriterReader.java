@@ -61,9 +61,6 @@ public class CatsWriterReader {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line;
             String line1;
-            /* Будем считывать строки из файла в цикле. Каждую строку записываем в переменную line.
-            Считывать будем пока в файле есть строки = до тех пор, пока readline не вернет null
-             */
 
             System.out.println((line = bufferedReader.readLine()));
             System.out.println((line1 = bufferedReader.readLine()));
